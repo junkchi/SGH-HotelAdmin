@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão Hotel - Tipos de Quarto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Gestão de Hotel</h1>
+    <div id="app">
+        
+        <div id="form-container">
+            <h2 id="form-titulo">Adicionar Novo Quarto</h2>
+            <form id="form-quarto">
+                <input type="hidden" id="edit-id">
+
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" required>
+
+                <label for="descricao">Descrição:</label>
+                <input type="text" id="descricao" required>
+
+                <label for="capacidade">Capacidade Máxima:</label>
+                <input type="number" id="capacidade" min="1" required>
+
+                <label for="tarifa">Tarifa Padrão (R$):</label>
+                <input type="number" id="tarifa" step="0.01" min="0.01" required>
+
+                <button type="submit" id="btn-salvar">Salvar Quarto</button>
+                <button type="button" id="btn-cancelar" class="cancel" style="display:none;">Cancelar Edição</button>
+            </form>
+        </div>
+
+        <div id="lista-container">
+            <h2>Quartos Cadastrados</h2>
+            <ul id="lista-quartos">
+                </ul>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
