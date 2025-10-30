@@ -1,4 +1,4 @@
-# Projeto API de Gestão Hoteleira - Backend (trabalho-api)
+# Projeto API de Gestão Hoteleira - Backend (HotelAdmin)
 
 ## 📖 Descrição
 
@@ -31,12 +31,12 @@ Para rodar a aplicação completa e testar a interface, siga os dois passos:
 
 1.  Clone o repositório:
     ```bash
-    git clone [https://link-do-repo.git](https://link-do-repo.git)
+    git clone https://github.com/junkchi/SGH-HotelAdmin
     ```
 
 2.  Navegue até o diretório do projeto (a pasta que contém o `pom.xml`):
     ```bash
-    cd trabalho-api-main
+    cd SGH-HotelAdmin
     ```
 
 3.  Compile e execute o projeto:
