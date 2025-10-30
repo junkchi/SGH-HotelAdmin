@@ -255,4 +255,84 @@ class TipoQuartoServiceTest {
         var quartoNaoMudou = service.findById(idParaAtualizar);
         assertEquals("Nome Original", quartoNaoMudou.getNome());
     }
+
+    @Test
+    @DisplayName("Deve falhar ao tentar deletar um ID que não existe (Not Found)")
+    void testDelete_NotFound() {
+        // 1. Arrange (Não salvamos nada no banco em memória)
+
+        // 2. Act & 3. Assert
+        // Tenta deletar um ID que não existe
+        BusinessException exception = assertThrows(BusinessException.class, () -> {
+            service.deleteById(99L);
+        });
+
+        // A exceção deve vir do 'findEntityById'
+        assertEquals("Tipo de quarto não encontrado", exception.getMessage());
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatus());
+    }
+
+    @Test
+    @DisplayName("Deve falhar ao salvar com nome em branco (Regra 1)")
+    void testSave_FalhaNomeEmBranco() {
+        // 1. Arrange
+        TipoQuartoDto dto = criarDtoValido("Nome Branco");
+        dto.setNome("   "); // Valor inválido (em branco)
+
+        // 2. Act & 3. Assert
+        BusinessException exception = assertThrows(BusinessException.class, () -> {
+            service.save(dto);
+        });
+
+        assertEquals("Todos os campos (nome, descrição, capacidade, tarifa) são obrigatórios.", exception.getMessage());
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
+    }
+
+    @Test
+    @DisplayName("Deve falhar ao salvar com descrição nula (Regra 1)")
+    void testSave_FalhaDescricaoNula() {
+        // 1. Arrange
+        TipoQuartoDto dto = criarDtoValido("Desc Nula");
+        dto.setDescricao(null); // Valor inválido
+
+        // 2. Act & 3. Assert
+        BusinessException exception = assertThrows(BusinessException.class, () -> {
+            service.save(dto);
+        });
+
+        assertEquals("Todos os campos (nome, descrição, capacidade, tarifa) são obrigatórios.", exception.getMessage());
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
+    }
+
+    @Test
+    @DisplayName("Deve falhar ao salvar com capacidade nula (Regra 1)")
+    void testSave_FalhaCapacidadeNula() {
+        // 1. Arrange
+        TipoQuartoDto dto = criarDtoValido("Cap Nula");
+        dto.setCapacidadeMaxima(null); // Valor inválido
+
+        // 2. Act & 3. Assert
+        BusinessException exception = assertThrows(BusinessException.class, () -> {
+            service.save(dto);
+        });
+
+        assertEquals("Todos os campos (nome, descrição, capacidade, tarifa) são obrigatórios.", exception.getMessage());
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
+    }
+
+    @Test
+    @DisplayName("Deve falhar ao salvar com tarifa nula (Regra 1)")
+    void testSave_FalhaTarifaNula() {
+        // 1. Arrange
+        TipoQuartoDto dto = criarDtoValido("Tarifa Nula");
+        dto.setTarifaPadrao(null); // Valor inválido
+
+        // 2. Act & 3. Assert
+        BusinessException exception = assertThrows(BusinessException.class, () -> {
+            service.save(dto);
+        });
+
+        assertEquals("Todos os campos (nome, descrição, capacidade, tarifa) são obrigatórios.", exception.getMessage());
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
+    }
 }
