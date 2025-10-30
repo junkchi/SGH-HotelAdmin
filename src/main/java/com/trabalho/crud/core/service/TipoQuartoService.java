@@ -74,7 +74,7 @@ public class TipoQuartoService {
     }
 
     /**
-     * Inativa (Deleção Lógica) um tipo de quarto.
+     * Inativa um tipo de quarto.
      */
     public void deleteById(Long id) {
         TipoQuarto entity = this.findEntityById(id);
@@ -84,8 +84,6 @@ public class TipoQuartoService {
         entity.setAtivo(false);
         repository.save(entity);
     }
-
-    // --- MÉTODOS PRIVADOS DE VALIDAÇÃO ---
 
     private void validateCommonRules(TipoQuartoDto dto) {
         if (dto.getNome() == null || dto.getNome().isBlank() ||

@@ -75,7 +75,7 @@ public class TipoQuartoController {
         return ResponseEntity.ok(tipoQuartoService.update(id, tipoQuartoDto));
     }
 
-    @Operation(summary = "Inativar um tipo de quarto (Deleção Lógica)", description = "Realiza a deleção lógica (inativação) de um tipo de quarto. O registro não é apagado do banco de dados.")
+    @Operation(summary = "Inativar um tipo de quarto", description = "Realiza a inativação de um tipo de quarto. O registro não é apagado do banco de dados.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Tipo de quarto inativado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Tipo de quarto não encontrado")
